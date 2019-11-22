@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<verses title="Psalms 10" prevChapter="Psalms/Psa9.html" nextChapter="Psalms/Psa11.html">	<verse>
+		<url>Psalms 10:1</url>
+		<oref>Psalm 13:1</oref>
+		<oref>Psalm 22:1</oref>
+		<oref>Psalm 35:22</oref>
+		<oref>Psalm 55:1</oref>
+		<oref>Psalm 71:12</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:2</url>
+		<oref>Psalm 1:1</oref>
+		<oref>Psalm 7:16</oref>
+		<oref>Psalm 9:16</oref>
+		<oref>Psalm 10:9</oref>
+		<oref>Psalm 21:11</oref>
+		<oref>Psalm 73:6</oref>
+		<oref>Psalm 73:8</oref>
+		<oref>Psalm 140:8</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:3</url>
+		<oref>Psalm 10:13</oref>
+		<oref>Psalm 49:6</oref>
+		<oref>Psalm 49:18</oref>
+		<oref>Psalm 94:3</oref>
+		<oref>Psalm 94:4</oref>
+		<oref>Psalm 112:10</oref>
+		<oref>Psalm 140:8</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:4</url>
+		<oref>Psalm 10:11</oref>
+		<oref>Psalm 10:13</oref>
+		<oref>Psalm 14:1</oref>
+		<oref>Psalm 36:1</oref>
+		<oref>Psalm 36:2</oref>
+		<oref>Psalm 53:1</oref>
+		<oref>Psalm 101:5</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:5</url>
+		<oref>Psalm 17:4</oref>
+		<oref>Psalm 28:5</oref>
+		<oref>Psalm 52:7</oref>
+		<oref>Proverbs 24:7</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:6</url>
+		<rref>Revelation 18:7</rref>
+		<oref>Psalm 30:6</oref>
+		<oref>Psalm 49:11</oref>
+		<oref>Psalm 49:18</oref>
+		<oref>Psalm 52:7</oref>
+		<oref>Ecclesiastes 8:11</oref>
+		<oref>Isaiah 56:12</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:7</url>
+		<nref>Romans 3:14</nref>
+		<oref>Job 20:12</oref>
+		<oref>Psalm 10:14</oref>
+		<oref>Psalm 12:2</oref>
+		<oref>Psalm 36:3</oref>
+		<oref>Psalm 50:19</oref>
+		<oref>Psalm 55:11</oref>
+		<oref>Psalm 59:12</oref>
+		<oref>Psalm 73:8</oref>
+		<oref>Psalm 109:2</oref>
+		<oref>Psalm 140:3</oref>
+		<oref>Proverbs 24:2</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:8</url>
+		<gref>Matthew 5:21</gref>
+		<oref>Job 24:14</oref>
+		<oref>Psalm 11:2</oref>
+		<oref>Psalm 37:32</oref>
+		<oref>Psalm 64:4</oref>
+		<oref>Psalm 72:12</oref>
+		<oref>Psalm 94:6</oref>
+		<oref>Proverbs 1:11</oref>
+		<oref>Habakkuk 3:14</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:9</url>
+		<gref>Matthew 13:19</gref>
+		<oref>Psalm 10:2</oref>
+		<oref>Psalm 10:10</oref>
+		<oref>Psalm 17:12</oref>
+		<oref>Psalm 22:13</oref>
+		<oref>Psalm 57:6</oref>
+		<oref>Psalm 59:3</oref>
+		<oref>Psalm 140:5</oref>
+		<oref>Proverbs 24:15</oref>
+		<oref>Isaiah 3:14</oref>
+		<oref>Jeremiah 5:26</oref>
+		<oref>Daniel 6:7</oref>
+		<oref>Micah 7:2</oref>
+		<oref>Habakkuk 1:15</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:10</url>
+		<oref>Psalm 10:8</oref>
+		<oref>Psalm 10:9</oref>
+		<oref>Psalm 10:11</oref>
+		<oref>Proverbs 24:15</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:11</url>
+		<oref>Job 22:13</oref>
+		<oref>Psalm 10:4</oref>
+		<oref>Psalm 10:10</oref>
+		<oref>Psalm 36:2</oref>
+		<oref>Psalm 59:7</oref>
+		<oref>Psalm 64:5</oref>
+		<oref>Psalm 94:7</oref>
+		<oref>Isaiah 29:15</oref>
+		<oref>Ezekiel 8:12</oref>
+		<oref>Ezekiel 9:9</oref>
+		<oref>Amos 8:7</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:12</url>
+		<oref>Psalm 9:12</oref>
+		<oref>Psalm 17:7</oref>
+		<oref>Micah 5:9</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:13</url>
+		<oref>Psalm 10:3</oref>
+		<oref>Psalm 10:4</oref>
+		<oref>Isaiah 29:15</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:14</url>
+		<oref>Exodus 22:23</oref>
+		<oref>Psalm 10:7</oref>
+		<oref>Psalm 22:11</oref>
+		<oref>Psalm 31:7</oref>
+		<oref>Psalm 35:22</oref>
+		<oref>Psalm 68:5</oref>
+		<oref>Hosea 14:3</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:15</url>
+		<oref>Job 38:15</oref>
+		<oref>Psalm 37:17</oref>
+		<oref>Psalm 140:11</oref>
+		<oref>Jeremiah 48:25</oref>
+		<oref>Ezekiel 30:21</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:16</url>
+		<oref>Exodus 15:18</oref>
+		<oref>Deuteronomy 8:20</oref>
+		<oref>Judges 8:23</oref>
+		<oref>Psalm 9:7</oref>
+		<oref>Psalm 29:10</oref>
+		<oref>Psalm 102:12</oref>
+		<oref>Psalm 145:13</oref>
+		<oref>Psalm 146:10</oref>
+		<oref>Jeremiah 10:10</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:17</url>
+		<oref>Exodus 22:23</oref>
+		<oref>1 Kings 9:3</oref>
+		<oref>1 Chronicles 29:18</oref>
+		<oref>Psalm 9:18</oref>
+		<oref>Psalm 34:15</oref>
+		<oref>Psalm 38:9</oref>
+		<oref>Psalm 145:19</oref>
+	</verse>
+	<verse>
+		<url>Psalms 10:18</url>
+		<oref>Psalm 9:9</oref>
+		<oref>Psalm 12:5</oref>
+		<oref>Psalm 74:21</oref>
+		<oref>Psalm 82:3</oref>
+		<oref>Psalm 146:9</oref>
+		<oref>Isaiah 29:20</oref>
+	</verse>
+</verses>
