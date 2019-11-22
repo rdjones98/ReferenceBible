@@ -1,0 +1,1703 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<script>
+	var lastURL="";
+	function hamburgerClicked()
+	{
+		var e = document.getElementById("menu");
+		if(e.style.display == "none")
+			e.style.display = "inline";
+		else
+			e.style.display = "none";
+	}
+
+	function bClick(e) {
+		e = e.parentNode;
+		var br = e.getElementsByTagName("img")[0];
+		var bd = e.getElementsByTagName("img")[1];
+		var sub = e.getElementsByTagName("div")[0];
+		if( br.style.display == "none" )
+		{
+			br.style.display = "inline";
+			bd.style.display = "none";
+			sub.style.display = "none";
+		}
+		else 
+		{
+			br.style.display = "none";
+			bd.style.display = "inline";
+			sub.style.display = "block";
+		}
+	}
+	function closeMenu()
+	{
+		document.getElementById("menu").style.display="none";
+	}
+	function urlClicked(e) {
+		document.getElementById("iframeLoadChapter").src=e;
+		closeMenu();
+	}
+	function chapterLoaded()
+	{
+		var title = document.getElementById("iframeLoadChapter").contentWindow.document.title;
+		if(title.indexOf("404") > -1 )
+		{
+			document.getElementById("iframeLoadChapter").src = lastURL;
+			return;
+		}
+		else
+			lastURL = document.getElementById("iframeLoadChapter").src;
+		document.getElementById("titleDiv").innerHTML=title;
+		var body = document.getElementById("iframeLoadChapter").contentWindow.document.body.innerHTML;
+		document.getElementById("chapterDiv").innerHTML = body;
+		
+		// Hide Reference Drop down and any references that are not clicked
+		document.getElementById("referenceDropDown").style.display="none";
+		var e=new Object();
+		if( document.getElementById("otrefs") != null )
+		{
+			e.checked = document.getElementById("otrefs").checked;
+			referencesClicked("oref", e);
+		}
+		if( document.getElementById("grefs") != null )
+		{
+			e.checked = document.getElementById("grefs").checked;
+			referencesClicked("gref", e);
+		}
+		if( document.getElementById("ntrefs") != null )
+		{
+			e.checked = document.getElementById("ntrefs").checked;
+			referencesClicked("nref", e);
+		}
+		if( document.getElementById("revrefs") != null )
+		{
+			e.checked = document.getElementById("revrefs").checked;
+			referencesClicked("rref", e);
+		}
+	}
+
+	// Hide/Show a given class of divs
+	function referencesClicked(aRef, e)
+	{
+		try {
+			var refs = document.getElementsByClassName(aRef);
+			for (var i = 0; i < refs.length; i ++) 
+			{
+				if( e.checked )
+					refs[i].style.display = 'table-cell';
+				else
+					refs[i].style.display = 'none';
+			}
+		}
+		catch(err) {
+			alert( "referencesClicked: " + err.message );
+		}
+	}
+	function showHideReferences(event)
+	{
+		var e = document.getElementById("referenceDropDown");
+		if(e.style.display == "none")
+		{
+			document.getElementById("references").innerHTML="- References";
+			e.style.display = "block";
+		}
+		else
+		{
+			document.getElementById("references").innerHTML="+ References";
+			e.style.display = "none";
+		}
+	}
+
+	function leftArrowClicked()
+	{
+
+		var url = document.getElementById("iframeLoadChapter").contentWindow.document.getElementsByTagName("META")[0].getAttribute("prevchapter");
+		urlClicked(url);
+	}
+	function rightArrowClicked()
+	{
+		var url = document.getElementById("iframeLoadChapter").contentWindow.document.getElementsByTagName("META")[0].getAttribute("nextchapter");
+		urlClicked(url);
+	}
+	
+	// Load KeyListener.  This is outside of any funciton and should load when page loads
+	document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 37:
+            leftArrowClicked();
+            break;
+        case 39:
+            rightArrowClicked();
+			break;
+    }};
+	
+</script>
+<body onload=";">
+<table id=header >
+	<tr>
+		<td id=hamburgerCol>
+			<div id=hamburgerMenu onclick="hamburgerClicked();">	
+				<div id=hamburger></div>
+				<div id=hamburger></div>
+				<div id=hamburger></div>
+			</div>
+		</td>
+		<td id=leftArrowCol>
+			<img src="leftArrow.png" onclick="leftArrowClicked();return false;">
+		</td>
+		<td id=titleDiv></td>
+		<td id=rightArrowCol>
+			<img src="rightArrow.png" onclick="rightArrowClicked();return false;">
+		</td>
+		<td id=referenceCol>
+			<div id=references onclick="showHideReferences(this);return false;">+ References</div>
+		</td>
+		
+	</tr>
+</table>
+
+<div id=chapterDiv></div>
+
+
+<div id=referenceDropDown>
+	<input id='otrefs' 	type='checkbox' checked onclick='referencesClicked("oref", this);'><label>Old Testament</label><br>
+	<input id='grefs' 	type='checkbox' checked onclick='referencesClicked("gref", this);'><label>Gospels</label><br>
+	<input id='ntrefs' 	type='checkbox' checked onclick='referencesClicked("nref", this);'><label>Acts & Epistles&nbsp;&nbsp;</label><br>
+	<input id='revrefs' type='checkbox' checked onclick='referencesClicked("rref", this);'><label>Revelation</label><br>
+	</tr>
+</div>
+
+
+
+<iframe id=iframeLoadChapter src="IndexWelcome.html" style="display: none;" onload="chapterLoaded();"></iframe>
+
+
+<div id=menu>
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Genesis <span id=menuX onclick="closeMenu();">x</span>
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen36.html');return false;">Ch 36</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen37.html');return false;">Ch 37</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen38.html');return false;">Ch 38</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen39.html');return false;">Ch 39</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen40.html');return false;">Ch 40</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen41.html');return false;">Ch 41</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen42.html');return false;">Ch 42</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen43.html');return false;">Ch 43</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen44.html');return false;">Ch 44</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen45.html');return false;">Ch 45</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen46.html');return false;">Ch 46</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen47.html');return false;">Ch 47</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen48.html');return false;">Ch 48</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen49.html');return false;">Ch 49</a>
+			<a class="menuItem" href=""onclick="urlClicked('Genesis/Gen50.html');return false;">Ch 50</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Exodus		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo36.html');return false;">Ch 36</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo37.html');return false;">Ch 37</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo38.html');return false;">Ch 38</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo39.html');return false;">Ch 39</a>
+			<a class="menuItem" href=""onclick="urlClicked('Exodus/Exo40.html');return false;">Ch 40</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Leviticus		
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Leviticus/Lev27.html');return false;">Ch 27</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Numbers
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('Numbers/Num36.html');return false;">Ch 36</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Deuteronomy
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Deuteronomy/Deut34.html');return false;">Ch 34</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Joshua
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joshua/Josh24.html');return false;">Ch 24</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Judges
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Judges/Judges21.html');return false;">Ch 21</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Ruth
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Ruth/Ruth1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ruth/Ruth2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ruth/Ruth3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ruth/Ruth4.html');return false;">Ch 4</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">1 Samuel
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Samuel/1Sam31.html');return false;">Ch 31</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">2 Samuel
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Samuel/2Sam24.html');return false;">Ch 24</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">1 Kings
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Kings/1Ki22.html');return false;">Ch 22</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">2 Kings
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Kings/2Ki25.html');return false;">Ch 25</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">1 Chronicles
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Chronicles/1Chron29.html');return false;">Ch 29</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">2 Chronicles
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Chronicles/2Chron36.html');return false;">Ch 36</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Ezra
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezra/Ezra10.html');return false;">Ch 10</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Nehemiah
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nehemiah/Neh13.html');return false;">Ch 13</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Esther
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Esther/Esther10.html');return false;">Ch 10</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Job
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job36.html');return false;">Ch 36</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job37.html');return false;">Ch 37</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job38.html');return false;">Ch 38</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job39.html');return false;">Ch 39</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job40.html');return false;">Ch 40</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job41.html');return false;">Ch 41</a>
+			<a class="menuItem" href=""onclick="urlClicked('Job/Job42.html');return false;">Ch 42</a>
+		</div>
+	</div>
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Psalms
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa36.html');return false;">Ch 36</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa37.html');return false;">Ch 37</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa38.html');return false;">Ch 38</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa39.html');return false;">Ch 39</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa40.html');return false;">Ch 40</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa41.html');return false;">Ch 41</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa42.html');return false;">Ch 42</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa43.html');return false;">Ch 43</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa44.html');return false;">Ch 44</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa45.html');return false;">Ch 45</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa46.html');return false;">Ch 46</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa47.html');return false;">Ch 47</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa48.html');return false;">Ch 48</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa49.html');return false;">Ch 49</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa50.html');return false;">Ch 50</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa51.html');return false;">Ch 51</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa52.html');return false;">Ch 52</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa53.html');return false;">Ch 53</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa54.html');return false;">Ch 54</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa55.html');return false;">Ch 55</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa56.html');return false;">Ch 56</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa57.html');return false;">Ch 57</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa58.html');return false;">Ch 58</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa59.html');return false;">Ch 59</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa60.html');return false;">Ch 60</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa61.html');return false;">Ch 61</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa62.html');return false;">Ch 62</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa63.html');return false;">Ch 63</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa64.html');return false;">Ch 64</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa65.html');return false;">Ch 65</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa66.html');return false;">Ch 66</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa67.html');return false;">Ch 67</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa68.html');return false;">Ch 68</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa69.html');return false;">Ch 69</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa70.html');return false;">Ch 70</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa71.html');return false;">Ch 71</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa72.html');return false;">Ch 72</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa73.html');return false;">Ch 73</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa74.html');return false;">Ch 74</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa75.html');return false;">Ch 75</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa76.html');return false;">Ch 76</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa77.html');return false;">Ch 77</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa78.html');return false;">Ch 78</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa79.html');return false;">Ch 79</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa80.html');return false;">Ch 80</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa81.html');return false;">Ch 81</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa82.html');return false;">Ch 82</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa83.html');return false;">Ch 83</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa84.html');return false;">Ch 84</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa85.html');return false;">Ch 85</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa86.html');return false;">Ch 86</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa87.html');return false;">Ch 87</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa88.html');return false;">Ch 88</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa89.html');return false;">Ch 89</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa90.html');return false;">Ch 90</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa91.html');return false;">Ch 91</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa92.html');return false;">Ch 92</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa93.html');return false;">Ch 93</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa94.html');return false;">Ch 94</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa95.html');return false;">Ch 95</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa96.html');return false;">Ch 96</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa97.html');return false;">Ch 97</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa98.html');return false;">Ch 98</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa99.html');return false;">Ch 99</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa100.html');return false;">Ch 100</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa101.html');return false;">Ch 101</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa102.html');return false;">Ch 102</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa103.html');return false;">Ch 103</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa104.html');return false;">Ch 104</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa105.html');return false;">Ch 105</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa106.html');return false;">Ch 106</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa107.html');return false;">Ch 107</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa108.html');return false;">Ch 108</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa109.html');return false;">Ch 109</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa110.html');return false;">Ch 110</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa111.html');return false;">Ch 111</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa112.html');return false;">Ch 112</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa113.html');return false;">Ch 113</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa114.html');return false;">Ch 114</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa115.html');return false;">Ch 115</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa116.html');return false;">Ch 116</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa117.html');return false;">Ch 117</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa118.html');return false;">Ch 118</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa119.html');return false;">Ch 119</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa120.html');return false;">Ch 120</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa121.html');return false;">Ch 121</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa122.html');return false;">Ch 122</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa123.html');return false;">Ch 123</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa124.html');return false;">Ch 124</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa125.html');return false;">Ch 125</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa126.html');return false;">Ch 126</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa127.html');return false;">Ch 127</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa128.html');return false;">Ch 128</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa129.html');return false;">Ch 129</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa130.html');return false;">Ch 130</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa131.html');return false;">Ch 131</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa132.html');return false;">Ch 132</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa133.html');return false;">Ch 133</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa134.html');return false;">Ch 134</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa135.html');return false;">Ch 135</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa136.html');return false;">Ch 136</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa137.html');return false;">Ch 137</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa138.html');return false;">Ch 138</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa139.html');return false;">Ch 139</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa140.html');return false;">Ch 140</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa141.html');return false;">Ch 141</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa142.html');return false;">Ch 142</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa143.html');return false;">Ch 143</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa144.html');return false;">Ch 144</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa145.html');return false;">Ch 145</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa146.html');return false;">Ch 146</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa147.html');return false;">Ch 147</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa148.html');return false;">Ch 148</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa149.html');return false;">Ch 149</a>
+			<a class="menuItem" href=""onclick="urlClicked('Psalms/Psa150.html');return false;">Ch 150</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Proverbs
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Proverbs/Prov31.html');return false;">Ch 31</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Ecclesiastes
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ecclesiastes/Ecc12.html');return false;">Ch 12</a>
+		</div>
+	</div>
+
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Song of Songs
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Song of Songs/Song1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Song of Songs/Song2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Song of Songs/Song3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Song of Songs/Song4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Song of Songs/Song5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Song of Songs/Song6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Song of Songs/Song7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Song of Songs/Song8.html');return false;">Ch 8</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Isaiah
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah36.html');return false;">Ch 36</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah37.html');return false;">Ch 37</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah38.html');return false;">Ch 38</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah39.html');return false;">Ch 39</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah40.html');return false;">Ch 40</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah41.html');return false;">Ch 41</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah42.html');return false;">Ch 42</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah43.html');return false;">Ch 43</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah44.html');return false;">Ch 44</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah45.html');return false;">Ch 45</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah46.html');return false;">Ch 46</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah47.html');return false;">Ch 47</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah48.html');return false;">Ch 48</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah49.html');return false;">Ch 49</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah50.html');return false;">Ch 50</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah51.html');return false;">Ch 51</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah52.html');return false;">Ch 52</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah53.html');return false;">Ch 53</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah54.html');return false;">Ch 54</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah55.html');return false;">Ch 55</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah56.html');return false;">Ch 56</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah57.html');return false;">Ch 57</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah58.html');return false;">Ch 58</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah59.html');return false;">Ch 59</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah60.html');return false;">Ch 60</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah61.html');return false;">Ch 61</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah62.html');return false;">Ch 62</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah63.html');return false;">Ch 63</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah64.html');return false;">Ch 64</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah65.html');return false;">Ch 65</a>
+			<a class="menuItem" href=""onclick="urlClicked('Isaiah/Isaiah66.html');return false;">Ch 66</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Jeremiah
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer36.html');return false;">Ch 36</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer37.html');return false;">Ch 37</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer38.html');return false;">Ch 38</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer39.html');return false;">Ch 39</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer40.html');return false;">Ch 40</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer41.html');return false;">Ch 41</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer42.html');return false;">Ch 42</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer43.html');return false;">Ch 43</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer44.html');return false;">Ch 44</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer45.html');return false;">Ch 45</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer46.html');return false;">Ch 46</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer47.html');return false;">Ch 47</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer48.html');return false;">Ch 48</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer49.html');return false;">Ch 49</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer50.html');return false;">Ch 50</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer51.html');return false;">Ch 51</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jeremiah/Jer52.html');return false;">Ch 52</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Lamentations
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Lamentations/Lam1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Lamentations/Lam2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Lamentations/Lam3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Lamentations/Lam4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Lamentations/Lam5.html');return false;">Ch 5</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Ezekiel
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze28.html');return false;">Ch 28</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze29.html');return false;">Ch 29</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze30.html');return false;">Ch 30</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze31.html');return false;">Ch 31</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze32.html');return false;">Ch 32</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze33.html');return false;">Ch 33</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze34.html');return false;">Ch 34</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze35.html');return false;">Ch 35</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze36.html');return false;">Ch 36</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze37.html');return false;">Ch 37</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze38.html');return false;">Ch 38</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze39.html');return false;">Ch 39</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze40.html');return false;">Ch 40</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze41.html');return false;">Ch 41</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze42.html');return false;">Ch 42</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze43.html');return false;">Ch 43</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze44.html');return false;">Ch 44</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze45.html');return false;">Ch 45</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze46.html');return false;">Ch 46</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze47.html');return false;">Ch 47</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ezekiel/Eze48.html');return false;">Ch 48</a>
+		</div>
+	</div>
+
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Daniel
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Daniel/Dan12.html');return false;">Ch 12</a>
+		</div>
+	</div>
+	
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Hosea
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hosea/Hosea14.html');return false;">Ch 14</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Joel
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Joel/Joel1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joel/Joel2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Joel/Joel3.html');return false;">Ch 3</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Amos
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Amos/Amos9.html');return false;">Ch 9</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Obadiah
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Obadiah/Obadiah1.html');return false;">Ch 1</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Jonah
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Jonah/Jonah1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jonah/Jonah2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jonah/Jonah3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Jonah/Jonah4.html');return false;">Ch 4</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Micah
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Micah/Micah1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Micah/Micah2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Micah/Micah3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Micah/Micah4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Micah/Micah5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Micah/Micah6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Micah/Micah7.html');return false;">Ch 7</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Nahum
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Nahum/Nahum1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nahum/Nahum2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Nahum/Nahum3.html');return false;">Ch 3</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Habakkuk
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Habakkuk/Habakkuk1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Habakkuk/Habakkuk2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Habakkuk/Habakkuk3.html');return false;">Ch 3</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Zephaniah
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Zephaniah/Zeph1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zephaniah/Zeph2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zephaniah/Zeph3.html');return false;">Ch 3</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Haggai
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Haggai/Haggai1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Haggai/Haggai2.html');return false;">Ch 2</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Zechariah
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Zechariah/Zech14.html');return false;">Ch 14</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Malachi
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Malachi/Malachi1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Malachi/Malachi2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Malachi/Malachi3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Malachi/Malachi4.html');return false;">Ch 4</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Matthew
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Matthew/Matt28.html');return false;">Ch 28</a>
+		</div>
+	</div>
+
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Mark
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Mark/Mark16.html');return false;">Ch 16</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Luke
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Luke/Luke24.html');return false;">Ch 24</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">John
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('John/John1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('John/John21.html');return false;">Ch 21</a>
+		</div>
+	</div>
+
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Acts
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts22.html');return false;">Ch 22</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts23.html');return false;">Ch 23</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts24.html');return false;">Ch 24</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts25.html');return false;">Ch 25</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts26.html');return false;">Ch 26</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts27.html');return false;">Ch 27</a>
+			<a class="menuItem" href=""onclick="urlClicked('Acts/Acts28.html');return false;">Ch 28</a>
+		</div>
+	</div>
+
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Romans
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Romans/Rom16.html');return false;">Ch 16</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">1 Corinthians
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Corinthians/1Cor16.html');return false;">Ch 16</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">2 Corinthians
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Corinthians/2Cor13.html');return false;">Ch 13</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Galatians
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Galatians/Gal1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Galatians/Gal2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Galatians/Gal3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Galatians/Gal4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Galatians/Gal5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Galatians/Gal6.html');return false;">Ch 6</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Ephesians
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Ephesians/Eph1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ephesians/Eph2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ephesians/Eph3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ephesians/Eph4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ephesians/Eph5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Ephesians/Eph6.html');return false;">Ch 6</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Philippians
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Philippians/Phil1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Philippians/Phil2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Philippians/Phil3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Philippians/Phil4.html');return false;">Ch 4</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Colossians
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Colossians/Col1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Colossians/Col2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Colossians/Col3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Colossians/Col4.html');return false;">Ch 4</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">1 Thessalonians
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('1 Thessalonians/1Thes1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Thessalonians/1Thes2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Thessalonians/1Thes3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Thessalonians/1Thes4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Thessalonians/1Thes5.html');return false;">Ch 5</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">2 Thessalonians
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('2 Thessalonians/2Thes1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Thessalonians/2Thes2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Thessalonians/2Thes3.html');return false;">Ch 3</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">1 Timothy
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('1 Timothy/1Tim1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Timothy/1Tim2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Timothy/1Tim3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Timothy/1Tim4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Timothy/1Tim5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Timothy/1Tim6.html');return false;">Ch 6</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">2 Timothy
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('2 Timothy/2Tim1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Timothy/2Tim2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Timothy/2Tim3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Timothy/2Tim4.html');return false;">Ch 4</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Titus
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Titus/Titus1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Titus/Titus2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Titus/Titus3.html');return false;">Ch 3</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Philemon
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Philemon/Philemon1.html');return false;">Ch 1</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Hebrews
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Hebrews/Heb13.html');return false;">Ch 13</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">James
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('James/Jam1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('James/Jam2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('James/Jam3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('James/Jam4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('James/Jam5.html');return false;">Ch 5</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">1 Peter
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('1 Peter/1Pet1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Peter/1Pet2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Peter/1Pet3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Peter/1Pet4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 Peter/1Pet5.html');return false;">Ch 5</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">2 Peter
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('2 Peter/2Pet1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Peter/2Pet2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('2 Peter/2Pet3.html');return false;">Ch 3</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">1 John
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('1 John/1John1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 John/1John2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 John/1John3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 John/1John4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('1 John/1John5.html');return false;">Ch 5</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">2 John
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('2 John/2John1.html');return false;">Ch 1</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">3 John
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('3 John/3John1.html');return false;">Ch 1</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Jude
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Jude/Jude1.html');return false;">Ch 1</a>
+		</div>
+	</div>
+
+	<div><img src="r.png" href="" onclick="bClick(this)"><img class="dn" src="d.png" href="" onclick="bClick(this)">Revelation
+		<div class="items">
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev1.html');return false;">Ch 1</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev2.html');return false;">Ch 2</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev3.html');return false;">Ch 3</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev4.html');return false;">Ch 4</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev5.html');return false;">Ch 5</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev6.html');return false;">Ch 6</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev7.html');return false;">Ch 7</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev8.html');return false;">Ch 8</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev9.html');return false;">Ch 9</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev10.html');return false;">Ch 10</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev11.html');return false;">Ch 11</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev12.html');return false;">Ch 12</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev13.html');return false;">Ch 13</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev14.html');return false;">Ch 14</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev15.html');return false;">Ch 15</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev16.html');return false;">Ch 16</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev17.html');return false;">Ch 17</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev18.html');return false;">Ch 18</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev19.html');return false;">Ch 19</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev20.html');return false;">Ch 20</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev21.html');return false;">Ch 21</a>
+			<a class="menuItem" href=""onclick="urlClicked('Revelation/Rev22.html');return false;">Ch 22</a>
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>
