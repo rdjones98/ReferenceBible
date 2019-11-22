@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<verses title="Psalms 19" prevChapter="Psalms/Psa18.html" nextChapter="Psalms/Psa20.html">	<verse>
+		<url>Psalms 19:1</url>
+		<nref>Romans 1:19</nref>
+		<nref>Romans 1:20</nref>
+		<oref>Genesis 1:6</oref>
+		<oref>Genesis 1:7</oref>
+		<oref>Genesis 1:14</oref>
+		<oref>Psalm 8:1</oref>
+		<oref>Psalm 50:6</oref>
+		<oref>Psalm 89:5</oref>
+		<oref>Psalm 97:6</oref>
+		<oref>Psalm 145:10</oref>
+		<oref>Psalm 150:1</oref>
+		<oref>Isaiah 40:21</oref>
+		<oref>Jeremiah 31:35</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:2</url>
+		<oref>Psalm 19:3</oref>
+		<oref>Psalm 74:16</oref>
+		<oref>Psalm 139:12</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:3</url>
+		<oref>Psalm 19:2</oref>
+		<oref>Psalm 19:4</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:4</url>
+		<nref>Romans 10:18</nref>
+		<oref>Judges 5:31</oref>
+		<oref>Psalm 19:3</oref>
+		<oref>Psalm 19:5</oref>
+		<oref>Psalm 104:2</oref>
+		<oref>Isaiah 40:22</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:5</url>
+		<oref>Psalm 19:4</oref>
+		<oref>Psalm 19:6</oref>
+		<oref>Joel 2:16</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:6</url>
+		<oref>Psalm 19:5</oref>
+		<oref>Psalm 104:19</oref>
+		<oref>Psalm 113:3</oref>
+		<oref>Ecclesiastes 1:5</oref>
+		<oref>Hosea 6:3</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:7</url>
+		<oref>Deuteronomy 4:6</oref>
+		<oref>Nehemiah 9:13</oref>
+		<oref>Psalm 18:30</oref>
+		<oref>Psalm 23:3</oref>
+		<oref>Psalm 78:5</oref>
+		<oref>Psalm 93:5</oref>
+		<oref>Psalm 111:7</oref>
+		<oref>Psalm 116:6</oref>
+		<oref>Psalm 119:98</oref>
+		<oref>Psalm 119:130</oref>
+		<oref>Psalm 119:138</oref>
+		<oref>Psalm 119:160</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:8</url>
+		<oref>Psalm 12:6</oref>
+		<oref>Psalm 33:4</oref>
+		<oref>Psalm 36:9</oref>
+		<oref>Psalm 119:14</oref>
+		<oref>Psalm 119:128</oref>
+		<oref>Psalm 119:140</oref>
+		<oref>Proverbs 6:23</oref>
+		<oref>Isaiah 45:19</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:9</url>
+		<rref>Revelation 19:2</rref>
+		<oref>Psalm 111:8</oref>
+		<oref>Psalm 119:138</oref>
+		<oref>Psalm 119:142</oref>
+		<oref>Psalm 119:144</oref>
+		<oref>Zephaniah 3:15</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:10</url>
+		<oref>Psalm 12:6</oref>
+		<oref>Psalm 119:72</oref>
+		<oref>Psalm 119:103</oref>
+		<oref>Psalm 119:127</oref>
+		<oref>Proverbs 8:11</oref>
+		<oref>Proverbs 16:24</oref>
+		<oref>Proverbs 24:13</oref>
+		<oref>Song of Solomon 4:11</oref>
+		<oref>Ezekiel 3:3</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:11</url>
+		<oref>Psalm 17:4</oref>
+		<oref>Psalm 24:5</oref>
+		<oref>Psalm 24:6</oref>
+		<oref>Psalm 58:11</oref>
+		<oref>Proverbs 23:18</oref>
+		<oref>Proverbs 29:18</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:12</url>
+		<oref>Psalm 18:23</oref>
+		<oref>Psalm 40:12</oref>
+		<oref>Psalm 51:1</oref>
+		<oref>Psalm 51:2</oref>
+		<oref>Psalm 90:8</oref>
+		<oref>Psalm 139:6</oref>
+		<oref>Psalm 139:23</oref>
+		<oref>Psalm 139:24</oref>
+		<oref>Ezekiel 45:20</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:13</url>
+		<oref>Numbers 15:30</oref>
+		<oref>Psalm 18:23</oref>
+		<oref>Psalm 18:32</oref>
+		<oref>Psalm 25:11</oref>
+		<oref>Psalm 119:133</oref>
+		<oref>Hosea 8:5</oref>
+	</verse>
+	<verse>
+		<url>Psalms 19:14</url>
+		<oref>Psalm 18:2</oref>
+		<oref>Psalm 31:5</oref>
+		<oref>Psalm 104:34</oref>
+		<oref>Isaiah 47:4</oref>
+	</verse>
+</verses>
