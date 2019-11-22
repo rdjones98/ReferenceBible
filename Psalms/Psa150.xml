@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<verses title="Psalms 150" prevChapter="Psalms/Psa149.html" nextChapter="Proverbs/Prov1.html">	<verse>
+		<url>Psalms 150:1</url>
+		<oref>Genesis 1:14</oref>
+		<oref>Psalm 19:1</oref>
+		<oref>Psalm 68:34</oref>
+		<oref>Psalm 73:17</oref>
+		<oref>Psalm 102:19</oref>
+	</verse>
+	<verse>
+		<url>Psalms 150:2</url>
+		<oref>Deuteronomy 3:24</oref>
+		<oref>Psalm 106:2</oref>
+		<oref>Psalm 145:3</oref>
+		<oref>Psalm 145:12</oref>
+	</verse>
+	<verse>
+		<url>Psalms 150:3</url>
+		<oref>Psalm 33:2</oref>
+		<oref>Psalm 57:8</oref>
+		<oref>Psalm 98:6</oref>
+	</verse>
+	<verse>
+		<url>Psalms 150:4</url>
+		<oref>Genesis 4:21</oref>
+		<oref>Exodus 15:20</oref>
+		<oref>Job 21:12</oref>
+		<oref>Psalm 45:8</oref>
+		<oref>Psalm 149:3</oref>
+		<oref>Isaiah 38:20</oref>
+	</verse>
+	<verse>
+		<url>Psalms 150:5</url>
+		<nref>1 Corinthians 13:1</nref>
+		<oref>2 Samuel 6:5</oref>
+		<oref>1 Chronicles 13:8</oref>
+		<oref>1 Chronicles 15:16</oref>
+		<oref>Ezra 3:10</oref>
+		<oref>Nehemiah 12:27</oref>
+	</verse>
+	<verse>
+		<url>Psalms 150:6</url>
+		<oref>Exodus 15:2</oref>
+		<oref>Psalm 41:13</oref>
+		<oref>Psalm 103:22</oref>
+		<oref>Psalm 145:21</oref>
+	</verse>
+</verses>
