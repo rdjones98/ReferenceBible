@@ -1,0 +1,60 @@
+body {
+	background-color:white;
+	font-family: Helvetica, Verdana, Times, serif; 
+	margin-left:5px; 
+	margin-right:5px; 
+	margin-top:5px;
+	line-height: 150%; 
+	font-size: 15px; 
+	color:black;
+}
+a {text-decoration:none;}
+
+/* Title Bar */
+#header        { position:absolute; top:0px; left:0px;	width:100%;	height:40px; background-color: #625750; color:white;}
+#hamburgerCol  { width:20% }
+#leftArrowCol  { float:right; ; padding-top:10px }
+#titleDiv      { font-size:24px; text-align:center}
+#rightArrowCol { float:left; padding-top:10px}
+#referenceCol   { width:20%; text-align:right; padding-right:20px }
+#hamburgerMenu { position:absolute;	top:3px; left:5px;  width:30px; height:25px; background-color: #625750; }
+#hamburger 	   {										width:30px; height: 5px; background-color: white;	margin: 5px;  }
+
+/* Left side menu */
+#menu 		   { position:absolute;	top:40px; left:0px;	width:200px;height:90%;  background-color:#625750;  color:white; overflow-y:auto; overflow-x:hidden; padding-left:5px; }
+#menuX		   { float:right; font-size:24px; padding-right:10px; cursor:pointer;  }
+div.items 	   { padding-left:20px;	display: none; } /* Top level menu item  */
+div.items a    { color:white; }						 /* make all links in this div white */
+.menuItem 	   { display:block; } 					 /* sub menu items 		 */
+img.dn 		   { display:none; }
+label  		   { color:white; }
+
+/* right side drop down menu */
+#referenceDropDown { position:absolute; top:40px; right:0; background-color:#625750; display:none; }
+
+/* Current Chapter Display */
+#chapterDiv	   { position:absolute; left:0px; top:47px; width:100%; height:100%; }
+
+/* styles for chapter we will load */
+div.chapter   {padding-left:5px; background-color:white; height:95%;  }	/* this is the encompassing div */
+div.chapter a {color:black; text-decoration:underline}
+
+#refs td {background-color:red;}
+table 	{ table-layout:auto; border-collapse: collapse; margin-bottom:0px; margin-top:0px; margin-right:20px; width:100%; }
+td 		{ font-weight: bold;  padding-top: 0px; padding-bottom: 0px; padding-right:0px; line-height: 150%; font-family: Verdana, Times, serif; font-size: 16px; 	}
+td.sp 	{ padding-left: 1px; }
+td.topic{ color:blue; font-style:italic; }
+td.verse{ font-weight: normal; width:50%; line-height:150%; vertical-align:text-top; border-right:3px solid  #625750;}
+table.refs td { padding-top:10px; }
+table.refs a  { font-size:14px; padding-left:5px;}
+td.c1   { 					color:blue;  background-color:#fafafa; 		font-weight: bold;    line-height: 125%; padding-left: 	5px;  }
+td.c2   {  					color:blue;  background-color:#fafafa; 		font-weight: bold;    line-height: 125%; padding-left: 	5px;  }
+td.nref { font-size: 14px; 	color:black; background-color:WhiteSmoke; 	font-weight: normal;  line-height: 125%; padding-right: 5px; vertical-align:text-top; } /*new testament*/
+td.gref { font-size: 14px; 	color:crimson;   background-color:white; 		font-weight: normal;  line-height: 125%; padding-right: 5px; vertical-align:text-top; } /*gospel*/
+td.rref { font-size: 14px; 	color:black; background-color:#fff4e6; 		font-weight: normal;  line-height: 125%; padding-right: 5px; vertical-align:text-top; } /*revelation ref*/
+td.oref { font-size: 14px; 	color:black; background-color:Wheat; 		font-weight: normal;  line-height: 125%; padding-right: 5px; vertical-align:text-top;}  /*old testament*/
+span.blue { background-color:lightblue; }
+span.yellow { background-color:yellow; }
+span.pink { background-color:pink; }
+span.green { background-color:lightgreen; }
+h1 { color: red; padding-right:20px }
