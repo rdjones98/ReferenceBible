@@ -1,208 +1,369 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <verses title="Luke 12" prevChapter="Luke/Luke11.html" nextChapter="Luke/Luke13.html">	<verse>
-		<url>Luke 13:1</url>
+		<url>Luke 12:1</url>
 		<gref>Matthew 16:6</gref>
 		<gref>Matthew 16:11</gref>
 		<gref>Mark 8:15</gref>
 		<nref>Hebrews 12:22</nref>
 	</verse>
 	<verse>
-		<url>Luke 13:2</url>
-		<gref>John 9:2</gref>
-		<nref>Acts 28:4</nref>
+		<url>Luke 12:2</url>
+		<oref>Jeremiah 16:17</oref>
+		<oref>Hosea 8:13</oref>
+		<gref>Matthew 10:26</gref>
+		<gref>Mark 4:22</gref>
+		<gref>Luke 8:17</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:3</url>
+		<url>Luke 12:3</url>
+		<oref>Ecclesiastes 10:20</oref>
+		<gref>Matthew 10:27</gref>
+		<gref>Matthew 24:17</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:4</url>
-		<oref>Nehemiah 3:15</oref>
-		<oref>Isaiah 8:6</oref>
-		<gref>Matthew 6:12</gref>
-		<gref>Luke 11:4</gref>
-		<gref>John 9:7</gref>
-		<gref>John 9:11</gref>
-		<nref>Acts 28:4</nref>
+		<url>Luke 12:4</url>
+		<oref>Proverbs 29:25</oref>
+		<oref>Jeremiah 41:18</oref>
+		<gref>John 15:13</gref>
+		<gref>John 15:14</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:5</url>
+		<url>Luke 12:5</url>
+		<oref>Jeremiah 41:18</oref>
+		<gref>Matthew 5:22</gref>
+		<gref>Matthew 10:28</gref>
+		<nref>Hebrews 10:31</nref>
 	</verse>
 	<verse>
-		<url>Luke 13:6</url>
-		<oref>Isaiah 5:2</oref>
-		<oref>Jeremiah 8:13</oref>
-		<gref>Matthew 21:19</gref>
-		<gref>Luke 3:9</gref>
+		<url>Luke 12:6</url>
+		<gref>Matthew 10:29</gref>
+		<gref>Mark 12:42</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:7</url>
-		<oref>Daniel 4:14</oref>
-		<gref>Matthew 3:10</gref>
-		<gref>Matthew 7:19</gref>
-		<gref>Luke 3:9</gref>
+		<url>Luke 12:7</url>
+		<gref>Matthew 6:26</gref>
+		<gref>Matthew 10:30</gref>
+		<gref>Luke 21:18</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:8</url>
-		<gref>Luke 14:35</gref>
+		<url>Luke 12:8</url>
+		<gref>Matthew 8:20</gref>
+		<gref>Matthew 10:32</gref>
+		<gref>Luke 15:10</gref>
+		<nref>Romans 10:9</nref>
+		<rref>Revelation 3:5</rref>
 	</verse>
 	<verse>
-		<url>Luke 13:9</url>
+		<url>Luke 12:9</url>
+		<gref>Matthew 10:33</gref>
+		<gref>Luke 9:26</gref>
+		<gref>Luke 15:10</gref>
+		<nref>2 Timothy 2:12</nref>
 	</verse>
 	<verse>
-		<url>Luke 13:10</url>
-		<gref>Matthew 4:23</gref>
+		<url>Luke 12:10</url>
+		<gref>Matthew 12:31</gref>
+		<gref>Matthew 12:32</gref>
+		<gref>Mark 3:28</gref>
+		<gref>Mark 3:29</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:11</url>
-		<gref>Matthew 4:23</gref>
-		<gref>Luke 21:28</gref>
+		<url>Luke 12:11</url>
+		<oref>Exodus 4:12</oref>
+		<gref>Matthew 6:25</gref>
+		<gref>Matthew 6:27</gref>
+		<gref>Matthew 6:28</gref>
+		<gref>Matthew 6:31</gref>
+		<gref>Matthew 6:34</gref>
+		<gref>Matthew 10:17</gref>
+		<gref>Matthew 10:19</gref>
+		<gref>Mark 13:11</gref>
+		<gref>Luke 21:14</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:12</url>
-		<gref>Matthew 4:23</gref>
+		<url>Luke 12:12</url>
+		<oref>Exodus 4:12</oref>
+		<gref>Matthew 10:19</gref>
+		<gref>Matthew 10:20</gref>
+		<gref>Luke 21:15</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:13</url>
-		<gref>Matthew 9:8</gref>
-		<gref>Mark 5:23</gref>
+		<url>Luke 12:13</url>
 	</verse>
 	<verse>
-		<url>Luke 13:14</url>
-		<oref>Exodus 20:9</oref>
-		<oref>Deuteronomy 5:13</oref>
-		<oref>Ezekiel 34:21</oref>
-		<gref>Matthew 12:2</gref>
-		<gref>Matthew 12:10</gref>
-		<gref>Mark 5:22</gref>
-		<gref>Luke 14:3</gref>
-		<gref>John 9:16</gref>
+		<url>Luke 12:14</url>
+		<oref>Micah 6:8</oref>
+		<nref>Romans 2:1</nref>
+		<nref>Romans 2:3</nref>
+		<nref>Romans 9:20</nref>
 	</verse>
 	<verse>
-		<url>Luke 13:15</url>
+		<url>Luke 12:15</url>
+		<oref>Psalm 62:10</oref>
+		<oref>Psalm 119:36</oref>
+		<oref>Jeremiah 22:17</oref>
+		<oref>Ezekiel 33:31</oref>
+		<nref>1 Timothy 6:6</nref>
+	</verse>
+	<verse>
+		<url>Luke 12:16</url>
+		<oref>Ezekiel 16:49</oref>
+		<gref>Matthew 13:8</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:17</url>
+		<gref>Matthew 16:7</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:18</url>
+		<gref>Matthew 6:26</gref>
+		<nref>James 4:13</nref>
+	</verse>
+	<verse>
+		<url>Luke 12:19</url>
+		<oref>1 Samuel 30:16</oref>
+		<oref>Psalm 49:18</oref>
+		<oref>Proverbs 10:2</oref>
+		<oref>Proverbs 27:1</oref>
+		<oref>Ecclesiastes 2:24</oref>
+		<oref>Ecclesiastes 11:9</oref>
+		<oref>Isaiah 56:12</oref>
+		<oref>Amos 6:13</oref>
+		<nref>1 Corinthians 15:32</nref>
+	</verse>
+	<verse>
+		<url>Luke 12:20</url>
+		<oref>Job 27:8</oref>
+		<oref>Psalm 39:6</oref>
+		<oref>Psalm 49:10</oref>
+		<oref>Proverbs 10:2</oref>
+		<oref>Proverbs 13:7</oref>
+		<oref>Proverbs 27:1</oref>
+		<oref>Isaiah 56:12</oref>
+		<oref>Jeremiah 17:11</oref>
+		<oref>Amos 6:13</oref>
+		<gref>Luke 11:40</gref>
+		<nref>1 Timothy 6:17</nref>
+	</verse>
+	<verse>
+		<url>Luke 12:21</url>
+		<oref>Proverbs 13:7</oref>
+		<gref>Matthew 6:19</gref>
+		<nref>1 Timothy 6:9</nref>
+		<nref>James 2:5</nref>
+	</verse>
+	<verse>
+		<url>Luke 12:22</url>
+		<gref>Matthew 6:25</gref>
+		<gref>Matthew 6:27</gref>
+		<gref>Matthew 6:28</gref>
+		<gref>Matthew 6:31</gref>
+		<gref>Matthew 6:34</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:23</url>
+	</verse>
+	<verse>
+		<url>Luke 12:24</url>
+		<oref>Job 38:41</oref>
+		<gref>Matthew 3:12</gref>
+		<gref>Matthew 6:26</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:25</url>
+		<oref>Psalm 39:5</oref>
+		<gref>Matthew 6:27</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:26</url>
+		<gref>Matthew 6:25</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:27</url>
+		<oref>1 Kings 10:4</oref>
+		<oref>2 Chronicles 9:3</oref>
+		<gref>Matthew 6:28</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:28</url>
+		<gref>Matthew 6:30</gref>
+		<nref>Hebrews 6:7</nref>
+	</verse>
+	<verse>
+		<url>Luke 12:29</url>
+		<gref>Matthew 6:31</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:30</url>
+		<gref>Matthew 6:8</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:31</url>
+		<gref>Matthew 6:33</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:32</url>
+		<gref>Matthew 14:27</gref>
+		<gref>Matthew 25:34</gref>
+		<gref>John 21:15</gref>
+		<nref>Acts 20:28</nref>
+		<nref>Acts 20:29</nref>
+		<nref>1 Corinthians 1:21</nref>
+		<nref>Ephesians 1:5</nref>
+		<nref>Ephesians 1:9</nref>
+	</verse>
+	<verse>
+		<url>Luke 12:33</url>
+		<oref>Proverbs 13:7</oref>
+		<gref>Matthew 6:19</gref>
+		<gref>Matthew 6:20</gref>
+		<gref>Matthew 19:21</gref>
+		<gref>Luke 11:41</gref>
+		<gref>Luke 16:9</gref>
+		<gref>Luke 18:22</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:34</url>
+		<gref>Matthew 6:21</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:35</url>
+		<gref>Matthew 25:1</gref>
+		<gref>Matthew 25:10</gref>
+		<nref>Ephesians 6:14</nref>
+		<nref>1 Peter 1:13</nref>
+	</verse>
+	<verse>
+		<url>Luke 12:36</url>
+		<gref>Matthew 22:2</gref>
+		<gref>Mark 13:34</gref>
+		<rref>Revelation 3:20</rref>
+		<rref>Revelation 19:7</rref>
+	</verse>
+	<verse>
+		<url>Luke 12:37</url>
+		<gref>Matthew 24:42</gref>
+		<gref>Luke 17:8</gref>
+		<gref>Luke 22:27</gref>
+		<gref>John 12:26</gref>
+		<gref>John 13:4</gref>
+		<rref>Revelation 16:15</rref>
+	</verse>
+	<verse>
+		<url>Luke 12:38</url>
+		<gref>Matthew 24:43</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:39</url>
+		<gref>Matthew 6:19</gref>
+		<gref>Matthew 24:42</gref>
+		<gref>Matthew 24:43</gref>
+		<gref>Matthew 24:44</gref>
+		<nref>2 Peter 3:10</nref>
+		<rref>Revelation 3:3</rref>
+		<rref>Revelation 16:15</rref>
+	</verse>
+	<verse>
+		<url>Luke 12:40</url>
+		<gref>Mark 13:33</gref>
+		<gref>Luke 21:34</gref>
+		<gref>Luke 21:36</gref>
+	</verse>
+	<verse>
+		<url>Luke 12:41</url>
+	</verse>
+	<verse>
+		<url>Luke 12:42</url>
+		<oref>Proverbs 27:18</oref>
+		<oref>Proverbs 31:15</oref>
+		<gref>Matthew 24:45</gref>
 		<gref>Luke 7:13</gref>
 		<gref>Luke 7:19</gref>
-		<gref>Luke 14:5</gref>
+		<gref>Luke 16:1</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:16</url>
-		<oref>Psalm 107:14</oref>
-		<gref>Matthew 4:10</gref>
-		<gref>Luke 19:9</gref>
+		<url>Luke 12:43</url>
 	</verse>
 	<verse>
-		<url>Luke 13:17</url>
-		<oref>Isaiah 66:5</oref>
-		<gref>Luke 18:43</gref>
-		<nref>Titus 2:8</nref>
+		<url>Luke 12:44</url>
+		<gref>Matthew 25:21</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:18</url>
-		<gref>Matthew 13:24</gref>
-		<gref>Matthew 13:31</gref>
-		<gref>Matthew 13:32</gref>
-		<gref>Mark 4:30</gref>
+		<url>Luke 12:45</url>
+		<oref>Deuteronomy 12:12</oref>
+		<gref>Luke 21:34</gref>
+		<gref>John 2:10</gref>
+		<nref>Acts 2:18</nref>
 	</verse>
 	<verse>
-		<url>Luke 13:19</url>
-		<oref>Ezekiel 17:23</oref>
-		<oref>Daniel 4:12</oref>
-		<gref>Matthew 13:31</gref>
-		<gref>Mark 4:30</gref>
-		<gref>Luke 17:6</gref>
+		<url>Luke 12:46</url>
+		<gref>Matthew 24:50</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:20</url>
-		<gref>Matthew 11:16</gref>
-		<gref>Matthew 13:24</gref>
+		<url>Luke 12:47</url>
+		<oref>Deuteronomy 25:2</oref>
+		<oref>Ezekiel 9:6</oref>
+		<nref>James 4:17</nref>
 	</verse>
 	<verse>
-		<url>Luke 13:21</url>
-		<gref>Matthew 13:33</gref>
+		<url>Luke 12:48</url>
+		<oref>Leviticus 5:17</oref>
+		<oref>Numbers 15:27</oref>
+		<oref>Numbers 15:29</oref>
+		<oref>Deuteronomy 25:2</oref>
+		<gref>Matthew 13:12</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:22</url>
-		<gref>Mark 6:6</gref>
-		<gref>Luke 9:51</gref>
+		<url>Luke 12:49</url>
 	</verse>
 	<verse>
-		<url>Luke 13:23</url>
+		<url>Luke 12:50</url>
+		<gref>Matthew 3:6</gref>
+		<gref>Mark 10:38</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:24</url>
-		<gref>Matthew 7:13</gref>
+		<url>Luke 12:51</url>
+		<gref>Matthew 10:34</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:25</url>
-		<gref>Matthew 7:22</gref>
-		<gref>Matthew 7:23</gref>
-		<gref>Matthew 25:10</gref>
-		<gref>Matthew 25:11</gref>
-		<gref>Matthew 25:12</gref>
-		<gref>Luke 3:8</gref>
+		<url>Luke 12:52</url>
 	</verse>
 	<verse>
-		<url>Luke 13:26</url>
-		<gref>Luke 3:8</gref>
+		<url>Luke 12:53</url>
+		<oref>Micah 7:6</oref>
+		<gref>Matthew 10:21</gref>
+		<gref>Matthew 10:35</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:27</url>
-		<oref>Psalm 6:8</oref>
-		<gref>Matthew 7:23</gref>
-		<gref>Matthew 25:41</gref>
-		<nref>2 Timothy 2:19</nref>
+		<url>Luke 12:54</url>
+		<oref>1 Kings 18:44</oref>
+		<gref>Matthew 16:2</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:28</url>
-		<oref>Psalm 112:10</oref>
-		<gref>Matthew 8:12</gref>
-		<gref>Matthew 22:13</gref>
-		<gref>Matthew 25:30</gref>
+		<url>Luke 12:55</url>
+		<gref>Matthew 6:3</gref>
+		<gref>Matthew 20:12</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:29</url>
-		<gref>Matthew 8:11</gref>
+		<url>Luke 12:56</url>
+		<gref>Matthew 6:2</gref>
+		<gref>Matthew 16:3</gref>
 	</verse>
 	<verse>
-		<url>Luke 13:30</url>
-		<gref>Matthew 19:30</gref>
-		<gref>Matthew 20:16</gref>
-		<gref>Mark 10:31</gref>
+		<url>Luke 12:57</url>
+		<gref>Luke 21:30</gref>
+		<nref>1 Corinthians 11:13</nref>
 	</verse>
 	<verse>
-		<url>Luke 13:31</url>
-		<gref>Matthew 14:1</gref>
-		<gref>Matthew 14:3</gref>
-		<gref>Matthew 14:6</gref>
-		<gref>Luke 3:1</gref>
-		<gref>Luke 9:7</gref>
-		<gref>Luke 23:7</gref>
+		<url>Luke 12:58</url>
+		<gref>Matthew 5:25</gref>
+		<gref>Matthew 5:26</gref>
+		<nref>2 Peter 1:15</nref>
+		<nref>Jude 1:3</nref>
 	</verse>
 	<verse>
-		<url>Luke 13:32</url>
-		<oref>Song of Solomon 2:15</oref>
-		<nref>Hebrews 2:10</nref>
-		<nref>Hebrews 5:9</nref>
-		<nref>Hebrews 7:28</nref>
-	</verse>
-	<verse>
-		<url>Luke 13:33</url>
-		<gref>Matthew 21:11</gref>
-		<gref>John 11:9</gref>
-	</verse>
-	<verse>
-		<url>Luke 13:34</url>
-		<oref>Jeremiah 35:17</oref>
-		<gref>Matthew 23:37</gref>
-		<gref>Luke 19:41</gref>
-	</verse>
-	<verse>
-		<url>Luke 13:35</url>
-		<oref>Psalm 69:25</oref>
-		<oref>Psalm 118:26</oref>
-		<oref>Jeremiah 35:17</oref>
-		<gref>Matthew 21:9</gref>
-		<gref>Matthew 23:37</gref>
-		<gref>Luke 19:38</gref>
-		<gref>Luke 19:41</gref>
+		<url>Luke 12:59</url>
+		<gref>Matthew 5:26</gref>
+		<gref>Mark 12:42</gref>
 	</verse>
 </verses>

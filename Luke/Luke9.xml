@@ -258,10 +258,108 @@
 		<gref>Luke 24:44</gref>
 	</verse>
 	<verse>
-		<url>Luke 10:45</url>
+		<url>Luke 9:45</url>
 		<gref>Matthew 17:22</gref>
 		<gref>Mark 9:32</gref>
 		<gref>Luke 2:50</gref>
 		<gref>Luke 18:34</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:46</url>
+		<gref>Matthew 18:1</gref>
+		<gref>Mark 9:33</gref>
+		<gref>Luke 22:24</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:47</url>
+		<gref>Matthew 9:4</gref>
+		<gref>Matthew 12:15</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:48</url>
+		<gref>Matthew 10:40</gref>
+		<gref>Luke 10:16</gref>
+		<gref>Luke 22:26</gref>
+		<gref>John 13:20</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:49</url>
+		<gref>Matthew 3:14</gref>
+		<gref>Mark 9:38</gref>
+		<gref>Luke 5:5</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:50</url>
+		<gref>Matthew 12:30</gref>
+		<gref>Mark 9:38</gref>
+		<gref>Luke 11:23</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:51</url>
+		<gref>Mark 16:19</gref>
+		<gref>Luke 13:22</gref>
+		<gref>Luke 17:11</gref>
+		<gref>Luke 18:31</gref>
+		<gref>Luke 19:11</gref>
+		<gref>Luke 19:28</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:52</url>
+		<gref>Matthew 10:5</gref>
+		<gref>Luke 10:1</gref>
+		<gref>Luke 10:33</gref>
+		<gref>Luke 17:11</gref>
+		<gref>Luke 17:16</gref>
+		<gref>John 4:4</gref>
+		<gref>John 4:5</gref>
+		<gref>John 4:9</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:53</url>
+		<gref>John 4:9</gref>
+		<gref>John 4:20</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:54</url>
+		<oref>2 Samuel 16:9</oref>
+		<oref>2 Kings 1:9</oref>
+		<oref>2 Kings 1:10</oref>
+		<gref>Mark 3:17</gref>
+		<rref>Revelation 13:13</rref>
+	</verse>
+	<verse>
+		<url>Luke 9:55</url>
+	</verse>
+	<verse>
+		<url>Luke 9:56</url>
+	</verse>
+	<verse>
+		<url>Luke 9:57</url>
+		<gref>Matthew 8:19</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:58</url>
+		<gref>Matthew 8:20</gref>
+		<gref>Matthew 13:32</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:59</url>
+		<gref>Matthew 8:22</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:60</url>
+		<gref>Matthew 4:23</gref>
+		<gref>Matthew 8:22</gref>
+		<gref>Luke 15:24</gref>
+	</verse>
+	<verse>
+		<url>Luke 9:61</url>
+		<oref>1 Kings 19:20</oref>
+		<nref>2 Corinthians 2:13</nref>
+	</verse>
+	<verse>
+		<url>Luke 9:62</url>
+		<oref>1 Kings 19:20</oref>
+		<nref>Philippians 3:13</nref>
 	</verse>
 </verses>

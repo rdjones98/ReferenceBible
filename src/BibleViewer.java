@@ -22,7 +22,7 @@ public class BibleViewer extends JPanel
 	public BibleViewer()
 	{
 		JFXPanel jfxPanel = new JFXPanel();
-		ReferenceGenerator gen = new ReferenceGenerator(jfxPanel);
+		BibleBuilder gen = new BibleBuilder(jfxPanel);
 		
 		JFrame f = new JFrame();
 		f.setSize(1900,1000);
@@ -38,7 +38,7 @@ public class BibleViewer extends JPanel
 		Platform.runLater(() -> {
 		    WebView webView = new WebView();
 		    jfxPanel.setScene(new Scene(webView));
-		    webView.getEngine().load("http://localhost");
+		    webView.getEngine().load("http://localhost/ReferenceBible");
 //		    webView.getEngine().loadContent("<HTML>HI</HTML", "text/html");
 		});
 		f.setVisible(true);

@@ -220,73 +220,62 @@
 		<gref>Mark 6:37</gref>
 	</verse>
 	<verse>
-		<url>Luke 8:42</url>
+		<url>Luke 7:42</url>
 		<gref>Matthew 6:12</gref>
 		<gref>Matthew 18:25</gref>
 		<gref>Matthew 18:27</gref>
-		<gref>Luke 7:43</gref>
 	</verse>
 	<verse>
-		<url>Luke 8:43</url>
-		<oref>Leviticus 15:25</oref>
-		<gref>Matthew 9:20</gref>
-		<gref>Mark 12:44</gref>
+		<url>Luke 7:43</url>
+		<gref>Matthew 18:27</gref>
 	</verse>
 	<verse>
-		<url>Luke 8:44</url>
-		<gref>Matthew 9:20</gref>
+		<url>Luke 7:44</url>
+		<oref>Genesis 18:4</oref>
+		<oref>Genesis 19:2</oref>
+		<oref>Genesis 43:24</oref>
+		<oref>Judges 19:21</oref>
+		<oref>2 Samuel 11:8</oref>
+		<gref>John 13:5</gref>
+		<nref>1 Timothy 5:10</nref>
 	</verse>
 	<verse>
-		<url>Luke 8:45</url>
-		<gref>Luke 5:5</gref>
-		<gref>Luke 19:43</gref>
+		<url>Luke 7:45</url>
+		<oref>2 Samuel 15:5</oref>
+		<nref>Ephesians 6:4</nref>
 	</verse>
 	<verse>
-		<url>Luke 8:46</url>
-		<gref>Luke 5:17</gref>
+		<url>Luke 7:46</url>
+		<oref>2 Samuel 12:20</oref>
+		<oref>Psalm 23:5</oref>
+		<oref>Psalm 104:15</oref>
+		<oref>Ecclesiastes 9:8</oref>
+		<oref>Daniel 10:3</oref>
 	</verse>
 	<verse>
-		<url>Luke 8:47</url>
+		<url>Luke 7:47</url>
 	</verse>
 	<verse>
-		<url>Luke 8:48</url>
+		<url>Luke 7:48</url>
+		<gref>Matthew 9:2</gref>
+		<gref>Matthew 9:5</gref>
+		<gref>Mark 2:5</gref>
+		<gref>Mark 2:9</gref>
+		<gref>Luke 5:20</gref>
+		<gref>Luke 5:23</gref>
+	</verse>
+	<verse>
+		<url>Luke 7:49</url>
+		<gref>Matthew 9:10</gref>
+		<gref>Luke 5:21</gref>
+	</verse>
+	<verse>
+		<url>Luke 7:50</url>
+		<oref>1 Samuel 1:17</oref>
 		<gref>Matthew 9:22</gref>
 		<gref>Mark 5:34</gref>
-		<gref>Luke 7:50</gref>
-	</verse>
-	<verse>
-		<url>Luke 8:49</url>
-		<gref>Matthew 9:18</gref>
-		<gref>Matthew 26:10</gref>
-		<gref>Mark 5:22</gref>
-	</verse>
-	<verse>
-		<url>Luke 8:50</url>
-		<gref>Mark 5:36</gref>
-	</verse>
-	<verse>
-		<url>Luke 8:51</url>
-		<oref>2 Kings 4:33</oref>
-	</verse>
-	<verse>
-		<url>Luke 8:52</url>
-		<gref>Matthew 11:17</gref>
-		<gref>Luke 23:27</gref>
-		<gref>Luke 23:48</gref>
-		<gref>John 11:13</gref>
-	</verse>
-	<verse>
-		<url>Luke 8:53</url>
-		<gref>Matthew 9:24</gref>
-	</verse>
-	<verse>
-		<url>Luke 8:54</url>
-	</verse>
-	<verse>
-		<url>Luke 8:55</url>
-	</verse>
-	<verse>
-		<url>Luke 8:56</url>
-		<gref>Matthew 8:4</gref>
+		<gref>Luke 8:48</gref>
+		<gref>Luke 17:19</gref>
+		<gref>Luke 18:42</gref>
 	</verse>
 </verses>
